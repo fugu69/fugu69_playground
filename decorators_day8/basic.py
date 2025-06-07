@@ -14,6 +14,7 @@ def middle_game():
 middle_game()
 """
 
+"""
 import time
 
 def count_execution_time(func):
@@ -31,3 +32,28 @@ def slow_function():
     print("Function complete!")
 
 slow_function()
+"""
+
+import random
+
+def attempt(max_count=3):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            retries = 0
+            while retries < max_count:
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    retries += 1
+                    print(f"Error: {e}! Attempt {retries}/{max_count}")
+            print("Failed after maximum retries")
+        return wrapper
+    return decorator
+
+@attempt(5)
+def unstable():
+    if random.choice([True, False]):
+        raise ValueError("Random Failure!")
+    print ("Success!")
+
+unstable()
