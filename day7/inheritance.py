@@ -2,6 +2,10 @@
 #               Helps with code reusability and extesdibility
 #               Syntax: class Child(Parent)
 
+# __init__(self) constructor is only needed when a class has attributes. In other cases it's optional.
+# super() call is only needed to call a parent's constructor if we need it's attributes. In other cases it's optional.
+# best prcatice is to call them explicitly for extensibility of the code
+
 class Animal():
     def __init__(self, name):
         self.name = name
