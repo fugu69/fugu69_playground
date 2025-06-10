@@ -1,0 +1,30 @@
+C - CREATE
+R - READ
+U - UPDATE
+D - DELETE
+
+Goals of the project:
+1. Understand Basic Operations
+2. Hands-on Experience
+3. Database Interaction
+4. Learn HTTP Methods
+5. Acquire ransferable skills
+6. Learn new Frameworks and Tech
+
+Roadmap:
+1. Basic Setup
+2. Create a Database Model
+3. HTTP Methods & Functionality
+4. Styling with SaaS and and finilize app
+5. Deploy
+
+Tech Stack:
+1. Python
+2. Flask
+3. SQLAlchemy 
+4. Sassy SASS
+
+Project Structure:
+
+Templates - holds all web-pages
+Static - holds styling
