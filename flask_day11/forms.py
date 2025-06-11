@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, StringField, PasswordField, SubmitField
-from wtforms.validators import DataReqired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 def CheckSpecialCharacters():
     def _check_special_chars(form, field):
@@ -11,18 +11,18 @@ def CheckSpecialCharacters():
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
-                           validators=[DataReqired(), Length(min=2, max=20)])
+                           validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password',
                             validators=[DataRequired(), Length(min=4), CheckSpecialCharacters()])
     confirm_password = PasswordField('Confirm password',
-                                    validators=[DataReqired(), EqualTo('password')])
+                                    validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
     user_identity = StringField('Username or Email',
-                           validators=[DataReqired(), Length(min=2, max=20)])
+                           validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password',
                             validators=[DataRequired(), Length(min=4), CheckSpecialCharacters()])
     remember_user = BooleanField('Remember Me')
