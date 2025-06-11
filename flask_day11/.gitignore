@@ -4,3 +4,5 @@ venv/
 # Virtual invironment variables
 .env
 
+# Python related
+__pycache__/
