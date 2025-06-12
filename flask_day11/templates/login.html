@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+	<!-- content-section defined in main.css -->
+	<div class="content-section">
+		<!-- empty action filed lead to no action after form submission -->
+		<form method="POST" action="">
+			<!-- form is a function variable which instantiate RegisterForm class -->
+			<!-- hidden_tag() is necessary method that adds CSRF token as part of the protection -->
+			{{ form.hidden_tag() }}
+			<!-- form-group is a Bootstrap class -->
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Log In</legend>
+				<div class="form-group mb-3"> 
+					{{ form.user_identity.label(class="form-control-label") }}
+
+					{% if form.user_identity.errors %}
+						{{ form.user_identity(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.user_identity.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+				  	{{ form.user_identity(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-group mb-3"> 
+					{{ form.password.label(class="form-control-label") }}
+					
+					{% if form.password.errors %}
+						{{ form.password(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+				  	{{ form.password(class="form-control form-control-lg") }}
+					{% endif %}
+				</div>
+				<div class="form-check mb-3">
+					{{	form.remember_user(class="form-check-input")	}}
+					{{	form.remember_user.label(class="form-check-label")	}}
+				</div>
+			</fieldset>
+			<div class="form-group mb-4">
+				{{ form.submit(class="btn btn-outline-info") }}
+			</div>
+			<small class="text-muted ml-4">
+				<a href="#">Forgot password?</a>
+			</small>
+		</form>
+	</div>
+	<div class="border-top pt-3">
+		<small class="text-muted">
+			<!-- register is the name of the function, not the route -->
+			Don't have an account? <a class="ml-2" href="{{ url_for("register") }}">Sign Up</a>
+		</small>
+	</div>
+{% endblock content %}
