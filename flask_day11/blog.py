@@ -11,6 +11,7 @@ app = Flask(__name__)
 # Set secret key from environment variable
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
+# Temporary dammy data
 dummy_posts = [
     {
         "author": "Goofy",
@@ -49,9 +50,16 @@ def register():
         return redirect(url_for("home"))
     return render_template("register.html", title="Register", form=form)
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        # Temporary dammy data
+        if form.user_identity.data == "dm@dm.com" or form.user_identity.data == "dima" and form.password.data == "1234#":
+            flash("Login success!", "success")
+            return redirect(url_for("home"))
+        else:
+            flash("Login failed", "danger")
     return render_template("login.html", title="Login", form=form)
 
 
